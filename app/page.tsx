@@ -58,70 +58,77 @@ export default function ChatPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  const categories: CategoryData[] = [
-    {
-      id: "demand",
-      title: "Registrations (Contract Demands)",
-      icon: BarChart3,
-      gradient: "from-blue-500 to-cyan-500",
-      questions: [
-        { text: "มีลูกค้าลงทะเบียนรอทำสัญญา iPhone กี่คน" },
-        { text: "iPhone รุ่นใดมีลูกค้ารอทำสัญญามากที่สุด" },
-        { text: "สาขาใดมีลูกค้าลงทะเบียนมากที่สุด" },
-        { text: "iPhone 17 Series มีลูกค้ารอกี่คน" },
-        { text: "การกระจายตัวของ Demand ตาม Region" },
-        { text: "Demand เฉลี่ยต่อวันในเดือนนี้" },
-        { text: "สัปดาห์ใดมี Demand สูงสุด" },
-        { text: "เปรียบเทียบ Demand ปีนี้กับปีก่อน" },
-      ],
-    },
-    {
-      id: "supply",
-      title: "Inventory (Stock)",
-      icon: Package,
-      gradient: "from-emerald-500 to-teal-500",
-      questions: [
-        { text: "มีสต็อค iPhone พร้อมส่งมอบกี่เครื่อง" },
-        { text: "สาขาใดมีสต็อคต่ำกว่าเกณฑ์" },
-        { text: "การกระจายสต็อคระหว่างคลังกับสาขา" },
-        { text: "สต็อค iPhone แต่ละรุ่นที่พร้อมส่งมอบ" },
-        { text: "สต็อคเฉลี่ยต่อสาขา" },
-        { text: "รุ่นใดมีสต็อคเกินความต้องการ" },
-        { text: "สาขาใดต้องเติมสต็อคด่วน" },
-        { text: "มูลค่าสต็อค iPhone ทั้งหมด" },
-      ],
-    },
-    {
-      id: "performance",
-      title: "Customer Contracts (Performance)",
-      icon: TrendingUp,
-      gradient: "from-purple-500 to-pink-500",
-      questions: [
-        { text: "Conversion Rate: Registration → Contract" },
-        { text: "จำนวนสัญญาที่ทำได้เดือนนี้" },
-        { text: "รายได้จากสัญญา iPhone เดือนนี้" },
-        { text: "iPhone รุ่นใดทำสัญญาได้มากที่สุด" },
-        { text: "Average Contract Value" },
-        { text: "Branch Performance Ranking" },
-      ],
-    },
-    {
-      id: "cross",
-      title: "Cross-Category Analysis",
-      icon: Target,
-      gradient: "from-orange-500 to-amber-500",
-      questions: [
-        { text: "รุ่นใดมี Demand สูงแต่ Stock ต่ำ - Gap Analysis" },
-        { text: "สาขาใดมีลูกค้ารอเยอะแต่สต็อคไม่พอ" },
-        { text: "Demand vs Supply Ratio รายรุ่น" },
-        { text: "สต็อคคงเหลือเทียบกับลูกค้ารอซื้อ" },
-        { text: "Conversion Rate เทียบกับ Stock Availability" },
-        { text: "รุ่นใดควร Order เพิ่มตาม Demand" },
-        { text: "ประสิทธิภาพการจับคู่ Demand-Supply" },
-        { text: "Lost Sales จากสต็อคไม่เพียงพอ" },
-      ],
-    },
-  ]
+const categories: CategoryData[] = [
+  {
+    id: "demand",
+    title: "Registrations (Contract Demands)",
+    icon: BarChart3,
+    gradient: "from-blue-500 to-cyan-500",
+    questions: [
+      { text: "มีลูกค้าลงทะเบียนรอทำสัญญา iPhone กี่คน" },
+      { text: "iPhone รุ่นใดมีลูกค้ารอทำสัญญามากที่สุด" },
+      { text: "สาขาใดมีลูกค้าลงทะเบียนมากที่สุด" },
+      { text: "iPhone 17 Series มีลูกค้ารอกี่คน" },
+      { text: "การกระจายตัวของ Demand ตาม Region" },
+      { text: "Demand เฉลี่ยต่อวันในเดือนนี้" },
+      { text: "สัปดาห์ใดมี Demand สูงสุด" },
+      { text: "เปรียบเทียบ Demand ปีนี้กับปีก่อน" },
+    ],
+  },
+  {
+    id: "supply",
+    title: "Inventory (Stock)",
+    icon: Package,
+    gradient: "from-emerald-500 to-teal-500",
+    questions: [
+      { text: "มีสต็อค iPhone พร้อมส่งมอบกี่เครื่อง" },
+      { text: "สาขาใดมีสต็อคต่ำกว่าเกณฑ์" },
+      { text: "การกระจายสต็อคระหว่างคลังกับสาขา" },
+      { text: "สต็อค iPhone แต่ละรุ่นที่พร้อมส่งมอบ" },
+      { text: "สต็อคเฉลี่ยต่อสาขา" },
+      { text: "รุ่นใดมีสต็อคเกินความต้องการ" },
+      { text: "สาขาใดต้องเติมสต็อคด่วน" },
+      { text: "มูลค่าสต็อค iPhone ทั้งหมด" },
+      { text: "Stock Coverage รายรุ่น" }, // ⭐ NEW
+      { text: "สาขาไหน Stock Coverage ต่ำ" }, // ⭐ NEW
+    ],
+  },
+  {
+    id: "performance",
+    title: "Customer Contracts (Performance)",
+    icon: TrendingUp,
+    gradient: "from-purple-500 to-pink-500",
+    questions: [
+      { text: "Conversion Rate: Registration → Contract" }, // ✅ RENAMED
+      { text: "จำนวนสัญญาที่ทำได้เดือนนี้" },
+      { text: "รายได้จากสัญญา iPhone เดือนนี้" },
+      { text: "iPhone รุ่นใดทำสัญญาได้มากที่สุด" },
+      { text: "Average Contract Value" },
+      { text: "Branch Performance Ranking" },
+      { text: "Lost Sales แยกตามสาเหตุ" }, // ⭐ NEW
+      { text: "รุ่นไหนเสียโอกาสจาก Stock" }, // ⭐ NEW
+      { text: "รุ่นไหนเสียโอกาสจาก Conversion" }, // ⭐ NEW
+    ],
+  },
+  {
+    id: "cross",
+    title: "Cross-Category Analysis",
+    icon: Target,
+    gradient: "from-orange-500 to-amber-500",
+    questions: [
+      { text: "รุ่นใดมี Demand สูงแต่ Stock ต่ำ - Gap Analysis" }, // ✅ KEEP
+      { text: "สาขาใดมีลูกค้ารอเยอะแต่สต็อคไม่พอ" }, // ✅ KEEP
+      // ❌ DELETED: "Demand vs Supply Ratio รายรุ่น"
+      { text: "สต็อคคงเหลือเทียบกับลูกค้ารอซื้อ" },
+      { text: "Conversion Rate เทียบกับ Stock Availability" },
+      { text: "รุ่นใดควร Order เพิ่มตาม Demand" },
+      // ❌ DELETED: "ประสิทธิภาพการจับคู่ Demand-Supply"
+      { text: "Lost Sales จากสต็อคไม่เพียงพอ" },
+      { text: "รุ่นไหนควร Order เพิ่ม" }, // ⭐ NEW (actionable)
+      { text: "รุ่นไหนควรกระตุ้นยอดขาย" }, // ⭐ NEW (actionable)
+    ],
+  },
+]
 
   const handleSendMessage = async (question: string) => {
     if (!question.trim() || isLoading) return
