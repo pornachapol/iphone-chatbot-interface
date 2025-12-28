@@ -50,7 +50,7 @@ export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [expandedSql, setExpandedSql] = useState<Set<number>>(new Set())
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
-    new Set(["demand", "supply", "performance", "cross"]),
+    new Set(),
   )
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -61,15 +61,13 @@ export default function ChatPage() {
   const categories: CategoryData[] = [
     {
       id: "demand",
-      title: "Contract Demand",
+      title: "Registrations (Contract Demands)",
       icon: BarChart3,
       gradient: "from-blue-500 to-cyan-500",
       questions: [
         { text: "มีลูกค้าลงทะเบียนรอทำสัญญา iPhone กี่คน" },
         { text: "iPhone รุ่นใดมีลูกค้ารอทำสัญญามากที่สุด" },
         { text: "สาขาใดมีลูกค้าลงทะเบียนมากที่สุด" },
-        { text: "แนวโน้มการลงทะเบียน 7 วันล่าสุด" },
-        { text: "แนวโน้มการลงทะเบียน 30 วันล่าสุด" },
         { text: "iPhone 17 Series มีลูกค้ารอกี่คน" },
         { text: "การกระจายตัวของ Demand ตาม Region" },
         { text: "Demand เฉลี่ยต่อวันในเดือนนี้" },
@@ -79,7 +77,7 @@ export default function ChatPage() {
     },
     {
       id: "supply",
-      title: "Inventory Supply",
+      title: "Inventory (Stock)",
       icon: Package,
       gradient: "from-emerald-500 to-teal-500",
       questions: [
@@ -87,17 +85,15 @@ export default function ChatPage() {
         { text: "สาขาใดมีสต็อคต่ำกว่าเกณฑ์" },
         { text: "การกระจายสต็อคระหว่างคลังกับสาขา" },
         { text: "สต็อค iPhone แต่ละรุ่นที่พร้อมส่งมอบ" },
-        { text: "อัตราการหมุนเวียนสต็อครายรุ่น" },
         { text: "สต็อคเฉลี่ยต่อสาขา" },
         { text: "รุ่นใดมีสต็อคเกินความต้องการ" },
-        { text: "ระยะเวลาเฉลี่ยที่สต็อคอยู่ในคลัง" },
         { text: "สาขาใดต้องเติมสต็อคด่วน" },
         { text: "มูลค่าสต็อค iPhone ทั้งหมด" },
       ],
     },
     {
       id: "performance",
-      title: "Contract Performance",
+      title: "Customer Contracts (Performance)",
       icon: TrendingUp,
       gradient: "from-purple-500 to-pink-500",
       questions: [
@@ -106,11 +102,7 @@ export default function ChatPage() {
         { text: "รายได้จากสัญญา iPhone เดือนนี้" },
         { text: "iPhone รุ่นใดทำสัญญาได้มากที่สุด" },
         { text: "Average Contract Value" },
-        { text: "ระยะเวลาเฉลี่ย: ลงทะเบียน → สัญญา" },
-        { text: "สัดส่วน Prepaid vs Postpaid" },
         { text: "Branch Performance Ranking" },
-        { text: "Customer Acquisition Cost" },
-        { text: "Revenue Forecast 30 วันข้างหน้า" },
       ],
     },
     {
